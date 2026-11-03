@@ -2,7 +2,7 @@ erDiagram
     direction LR
     USER {
         int id PK
-        uuid uuid UK 
+        uuid uuid UK
         string name
         datetime created_at
         datetime? updated_at
@@ -24,7 +24,7 @@ erDiagram
         int book_id FK
         int? published_year
         string? cover_path
-        string language
+        string? language
         string? isbn13 UK
         string? publisher
         int? page_count
@@ -64,21 +64,21 @@ erDiagram
     READING {
         int id PK
         uuid uuid UK
-        int user_id FK
+        int user_id FK "Unique with edition_id while pending/active"
         int edition_id FK
-        string status "read, in_progress, to_read, abandoned"
+        string status "pending (default), active, completed, dropped"
         int? rating "0-10"
         string? review
         date? started_at
-        date? finished_at
+        date? finished_at ">= started_at"
         datetime created_at
         datetime? updated_at
     }
 
     USER ||--o{ READING : "logs"
     EDITION ||--o{ READING : "is read in"
-    BOOK ||--|{ EDITION : "is published as"
+    BOOK ||--o{ EDITION : "is published as"
     AUTHOR ||--o{ BOOK_AUTHOR : "writes"
-    BOOK ||--|{ BOOK_AUTHOR : "is credited with"
+    BOOK ||--o{ BOOK_AUTHOR : "is credited with"
     BOOK ||--o{ BOOK_GENRE : "belongs to"
     GENRE ||--o{ BOOK_GENRE : "classifies"
