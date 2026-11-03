@@ -1,0 +1,84 @@
+erDiagram
+    direction LR
+    USER {
+        int id PK
+        uuid uuid UK 
+        string name
+        datetime created_at
+        datetime? updated_at
+    }
+
+    BOOK {
+        int id PK
+        uuid uuid UK
+        string title
+        string? description
+        string? openlibrary_key UK
+        datetime created_at
+        datetime? updated_at
+    }
+
+    EDITION {
+        int id PK
+        uuid uuid UK
+        int book_id FK
+        int? published_year
+        string? cover_path
+        string language
+        string? isbn13 UK
+        string? publisher
+        int? page_count
+        string? openlibrary_key UK
+        datetime created_at
+        datetime? updated_at
+    }
+
+    AUTHOR {
+        int id PK
+        uuid uuid UK
+        string name
+        string? openlibrary_key UK
+        datetime created_at
+        datetime? updated_at
+    }
+
+    BOOK_AUTHOR {
+        int book_id PK, FK
+        int author_id PK, FK
+        int position "Unique by book"
+    }
+
+    GENRE {
+        int id PK
+        uuid uuid UK
+        string name UK
+        datetime created_at
+        datetime? updated_at
+    }
+
+    BOOK_GENRE {
+        int book_id PK, FK
+        int genre_id PK, FK
+    }
+
+    READING {
+        int id PK
+        uuid uuid UK
+        int user_id FK
+        int edition_id FK
+        string status "read, in_progress, to_read, abandoned"
+        int? rating "0-10"
+        string? review
+        date? started_at
+        date? finished_at
+        datetime created_at
+        datetime? updated_at
+    }
+
+    USER ||--o{ READING : "logs"
+    EDITION ||--o{ READING : "is read in"
+    BOOK ||--|{ EDITION : "is published as"
+    AUTHOR ||--o{ BOOK_AUTHOR : "writes"
+    BOOK ||--|{ BOOK_AUTHOR : "is credited with"
+    BOOK ||--o{ BOOK_GENRE : "belongs to"
+    GENRE ||--o{ BOOK_GENRE : "classifies"
