@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 tokio = { version = "1", features = ["full"] }
 axum = "0.8"
+sqlx = { version = "0.9", features = ["runtime-tokio", "sqlite"] }
 
 [dev-dependencies]
 tower = { version = "0.5", features = ["util"] }
