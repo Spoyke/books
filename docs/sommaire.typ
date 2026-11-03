@@ -19,23 +19,16 @@ Le projet consiste à créer un service web de bibliothèque personnelle : l'uti
 = Périmètre
 
 == Version 1
+- un seul utilisateur
+- ajout de livres par import depuis Open Library ou par saisie manuelle
+- une fiche par édition d'un livre, consultable et modifiable
+- une liste principale qui sépare les livres lus et à lire, avec tri et recherche
+- la liste des livres lus contient une note et un avis de l'utilisateur sur le livre
 
-- un seul utilisateur ;
-- ajout de livres par import depuis Open Library ou par saisie manuelle ;
-- une fiche par livre, consultable et modifiable ;
-- une liste principale qui sépare les livres lus et à lire, avec tri et recherche.
-
-== Évolutions envisagées
-
-- plusieurs utilisateurs, chacun avec sa propre bibliothèque ;
-- une note moyenne par livre, calculée à partir des notes de tous les utilisateurs qui l'ont lu ;
-- la recommandation d'un livre à un autre utilisateur.
-
-== Hors périmètre
-
-- application mobile native (l'interface web doit en revanche rester utilisable sur téléphone) ;
-- recommandations automatiques ;
-- import depuis d'autres services (Goodreads, Babelio…).
+== Evolutions envisagés
+- plusieurs utilisateurs, chacun avec sa propre bibliothèque
+- une note moyenne par édition, calculée à partir des notes de tous les utilisateurs qui l'ont lu
+- les recommandation d'un livre à un autre utilisateur
 
 = Exigences fonctionnelles
 
@@ -136,3 +129,9 @@ Le projet consiste à créer un service web de bibliothèque personnelle : l'uti
   [ENF-10], [Évolutivité], [Le modèle de données distingue les informations d'un livre de la relation entre l'utilisateur et ce livre, pour permettre le passage au multi-utilisateur.],
   [ENF-11], [Conformité], [L'utilisation de l'API Open Library respecte ses conditions d'utilisation : le service s'identifie et n'envoie pas de requêtes en masse.],
 )
+
+= Choix techniques
+
+== Front end
+
+L'interface du service est un site web utilisant les outils par défaut (HTML, CSS et JS). Cela facilitera le portage du service sur d'autres support avec le développement d'une API.
