@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ma bibliothèque</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="module" src="/js/main.js"></script>
+</head>
+
+<body>
+  <main>
+    <h1>Ma bibliothèque</h1>
+
+    <p id="message" hidden></p>
+
+    <section data-status="active" hidden>
+      <h2>En cours</h2>
+      <ul class="book-list"></ul>
+    </section>
+
+    <section data-status="pending" hidden>
+      <h2>À lire</h2>
+      <ul class="book-list"></ul>
+    </section>
+
+    <section data-status="completed" hidden>
+      <h2>Lus</h2>
+      <ul class="book-list"></ul>
+    </section>
+
+    <section data-status="dropped" hidden>
+      <h2>Abandonnés</h2>
+      <ul class="book-list"></ul>
+    </section>
+  </main>
+
+  <template id="book-template">
+    <li class="book">
+      <h3 class="book-title"></h3>
+      <p class="book-authors"></p>
+      <p class="book-year"></p>
+    </li>
+  </template>
+</body>
+
+</html>
